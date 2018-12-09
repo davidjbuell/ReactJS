@@ -28,8 +28,14 @@ class App extends Component {
         { name: 'David', age: 39 },
         { name: event.target.value, age: 39 },
         { name: 'Tami', age: 29 }
-      ]
+      ],
+      showPersons: false  
     })
+  };
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons : !doesShow});
   };
 
   render() {
@@ -41,10 +47,9 @@ class App extends Component {
       padding: '8px'
     };
 
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <button style={style} onClick={() => this.toglePersonHandler()}>Switch Name</button>
+    // conditional content
+    let persons = this.state.showPersons ?
+      <div>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age} />
@@ -56,6 +61,13 @@ class App extends Component {
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age} />
+      </div> : null;
+
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
       </div>
     );
   }
