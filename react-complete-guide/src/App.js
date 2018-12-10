@@ -6,28 +6,24 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'David', age: 39 },
-      { name: 'Amir', age: 39 },
-      { name: 'Tami', age: 39 }
+      { id: '123', name: 'David', age: 39 },
+      { id: '234', name: 'Amir', age: 39 },
+      { id: '345', name: 'Tami', age: 39 }
     ]
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName, age: 39 },
-        { name: 'Amir', age: 39 },
-        { name: 'Tami', age: 29 }
-      ]
-    })
+  deletePersonhandler = (personIndex) => {
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   };
 
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
-        { name: 'David', age: 39 },
-        { name: event.target.value, age: 39 },
-        { name: 'Tami', age: 29 }
+        { id: '123', name: 'David', age: 39 },
+        { id: '234', name: event.target.value, age: 39 },
+        { id: '345', name: 'Tami', age: 29 }
       ],
       showPersons: false  
     })
@@ -50,17 +46,13 @@ class App extends Component {
     // conditional content
     let persons = this.state.showPersons ?
       <div>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age} />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Sally')}
-          changed={this.nameChangedHandler}>My Hobbies: Coding</Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+        {this.state.persons.map((person, index) => {
+          return <Person name={person.name}
+                         age={person.age}
+                         key={person.id}
+                         click={() => this.deletePersonhandler(index)}
+                         changed={(event) => this.nameChangedHandler(event, person.id)} />
+        })}
       </div> : null;
 
     return (
