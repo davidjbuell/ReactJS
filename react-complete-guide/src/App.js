@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <h1>Hi, I'm a React App</h1>
+        <h1>His, I'm a React App</h1>
 
         <button
           style={style}
@@ -67,7 +67,7 @@ class App extends Component {
         </button>
 
         {persons}
-        
+
       </div>
     );
   }
