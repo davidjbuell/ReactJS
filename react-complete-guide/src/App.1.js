@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 import './App.css';
 
@@ -44,7 +45,11 @@ class App extends Component {
       color: 'white',
       cursor: 'pointer',
       font: 'inherit',
-      padding: '8px 15px 9px'
+      padding: '8px 15px 9px',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     // conditional content
@@ -64,6 +69,10 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'pink',
+        color: 'black'
+      };
     }
 
     const classes = [];
@@ -75,22 +84,24 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <StyleRoot>
+        <div className="App">
 
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+          <h1>Hi, I'm a React App</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
 
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>
-            Toggle Persons
-        </button>
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}>
+              Toggle Persons
+          </button>
 
-        {persons}
+          {persons}
 
-      </div>
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
