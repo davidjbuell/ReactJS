@@ -4,10 +4,10 @@ import css from './Cockpit.module.css';
 const cockpit = (props) => {
 
     const classes = [];
-    let btnClass = '';
+    let btnClass = css.Button;
 
     if (props.showPersons) {
-        btnClass = css.red;
+        btnClass = [css.button, css.Red].join(' ');
     }
     if (props.persons.length <= 2) {
       classes.push( css.red );
@@ -17,7 +17,7 @@ const cockpit = (props) => {
     }
 
     return (
-        <div className={ css.Cockpit }>
+        <>
             <h1>{ props.appTitle }</h1>
             <p className={ classes.join(' ') }>This is really working!</p>
             <button
@@ -25,7 +25,7 @@ const cockpit = (props) => {
                 onClick={ props.clicked }>
                     Toggle Persons
             </button>
-        </div>
+        </>
     );
 };
 

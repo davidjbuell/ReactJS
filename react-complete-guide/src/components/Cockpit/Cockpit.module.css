@@ -1,4 +1,4 @@
-.Cockpit button {
+.Button {
     background: green;
     border: none;
     border-radius: 20px;
@@ -6,12 +6,12 @@
     cursor: pointer;
     padding: 8px 15px 9px;
 }
-.Cockpit button:hover {
+.Button:hover {
     background: lightgreen;
     color: black;
 }
-.Cockpit button.Red { background: red; }
-.Cockpit button.Red:hover {
+.Button.Red { background: red; }
+.Button.Red:hover {
     background: pink;
     color: black;
 }
