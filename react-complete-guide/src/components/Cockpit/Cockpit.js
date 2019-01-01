@@ -7,7 +7,7 @@ const cockpit = (props) => {
     let btnClass = css.Button;
 
     if (props.showPersons) {
-        btnClass = [css.button, css.Red].join(' ');
+        btnClass = [css.Button, css.Red].join(' ');
     }
     if (props.persons.length <= 2) {
       classes.push( css.red );
@@ -25,8 +25,9 @@ const cockpit = (props) => {
                 onClick={ props.clicked }>
                     Toggle Persons
             </button>
+            <button onClick={ props.login }>Log In</button>
         </>
     );
 };
 
-export default cockpit;
+export default React.memo(cockpit);
